@@ -3,10 +3,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const leetQuestionSchema = new Schema({
-  acceptedSolutions: {
-    type: Number,
-    required: true,
-  },
   constraints: {
     type: String,
     required: true,
@@ -17,10 +13,6 @@ const leetQuestionSchema = new Schema({
   },
   question: {
     type: String,
-    required: true,
-  },
-  submissions: {
-    type: Number,
     required: true,
   },
 });
