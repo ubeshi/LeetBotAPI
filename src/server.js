@@ -23,4 +23,14 @@ app.get('/', async (req, res) => {
     });
 });
 
+app.get('/:id', async (req, res) => {
+  await questionData.find({ id: req.params.id })
+    .then((question) => {
+      res.status(200).json(question);
+    })
+    .catch((err) => {
+      res.status(400).send(`Error: ${err}`);
+    });
+});
+
 app.listen(PORT);
