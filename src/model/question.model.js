@@ -1,37 +1,13 @@
-const mongoose = require('mongoose');
+const questions = require('../questions.json');
 
-const { Schema } = mongoose;
+const questionData = {
+  find: async (params) => {
+    if (params) {
+      const { id } = params;
+      return questions.find((question) => `${question.id}` === id);
+    }
+    return questions;
+  },
+};
 
-const questionSchema = new Schema({
-  id: {
-    type: Number,
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  url: {
-    type: String,
-    required: true,
-  },
-  pattern: {
-    type: Array,
-    required: true,
-  },
-  difficulty: {
-    type: String,
-    required: true,
-  },
-  premium: {
-    type: Boolean,
-    required: true,
-  },
-  companies: {
-    type: Array,
-    required: true,
-  },
-});
-
-const questionData = mongoose.model('Question', questionSchema, 'QuestionData');
 module.exports = questionData;
