@@ -1,4 +1,4 @@
-name: Lint
+name: GitHub Actions Workflow
 
 on:
   pull_request:
@@ -25,3 +25,22 @@ jobs:
         
       - name: Run lint
         run: npm run lint
+
+  run-tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@master
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Install Node.js dependencies
+        run: npm ci
+        
+      - name: Run tests
+        run: npm run test
